@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>eddy — Set 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+<style>
+@font-face{font-family:Alpha;src:url('https://heycristobal.com/my-style-guide/assets/fonts/AlphaLyrae-Medium.woff2') format('woff2'),url('https://heycristobal.com/vault/assets/fonts/AlphaLyrae-Medium.woff2') format('woff2');font-display:swap}
+:root{--stage:#14101c;--ink:#f0ecdf;--cream:#eeeade;--muted:#a8a1ae;--ease:cubic-bezier(.16,.8,.2,1)}*{box-sizing:border-box}body{margin:0;background:var(--stage);color:var(--ink);font-family:'Space Mono',monospace;transition:background .4s,color .4s}body.light{--stage:#ded9cd;--ink:#322c38;--muted:#706978}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:2px solid #a88fe7;outline-offset:4px}button{ -webkit-tap-highlight-color:transparent}header.toolbar{height:80px;display:flex;justify-content:space-between;align-items:center;padding:0 4vw;font-size:11px}.switch{display:flex;gap:5px}.switch button{border:0;background:none;padding:9px 12px;opacity:.45;border-radius:30px}.switch button[aria-pressed=true]{opacity:1;background:#8882a01c}.switch button[aria-pressed=true]:before{content:'•';margin-right:7px}.stage{min-height:calc(100svh - 160px);display:grid;place-items:center;padding:30px 36px 45px;perspective:1800px}.book{width:min(100%,1000px);position:relative;transform-style:preserve-3d;--gx:50%;--gy:50%}.spread{display:grid;grid-template-columns:1fr 1fr;position:relative;background:var(--cream);padding:15px;border-radius:5px;box-shadow:0 4px 0 #a29e94,0 8px 0 #c9c5ba,0 12px 0 #918d87,0 35px 65px #0006;color:#29262c;transition:opacity .4s}.page{min-width:0;position:relative}.checklist{padding:23px 30px 16px 17px;background:linear-gradient(90deg,transparent 92%,#00000014)}.page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #363038;padding-bottom:12px}.page-head h1{font:25px Alpha,Arial,sans-serif;margin:0}.micro{font-size:9px}.intro{font-size:9px;color:#726d72;line-height:1.7;margin:12px 0 17px}.labels,.check-row{display:grid;grid-template-columns:25px minmax(0,1fr) 12px 88px 16px;align-items:center;gap:5px}.labels{font-size:7px;color:#8b858c;padding:5px 0}.check-row{font-size:9px;min-height:26px;border-bottom:1px solid #0000000b;cursor:pointer}.check-row.secret-start{border-top:1px solid #9b939c;margin-top:10px;padding-top:6px}.check-row:hover{background:#bdb2c321}.card-link{padding:3px 0;background:none;border:0;color:#29262c;text-align:left;font:inherit}.check-row .rarity{font-size:7px;color:#716a75}.dot{width:6px;height:6px;border-radius:50%;background:var(--type)}.tick{appearance:none;width:12px;height:12px;border:1px solid #9f98a2;border-radius:2px;margin:0;cursor:pointer;display:grid;place-items:center}.tick:checked{background:#514858;border-color:#514858}.tick:checked:after{content:'✓';color:#fff;font-size:9px}.progress-footer{margin-top:20px;font-size:9px;display:flex;justify-content:space-between;border-top:1px solid #aaa2ac;padding-top:12px}.progress-track{height:2px;background:#d3ccd2;margin-top:10px}.progress-track i{display:block;height:100%;background:#61546a;transition:width .3s}.sleeve-shell{perspective:1500px;padding-left:16px;position:relative}.sleeve{background:#242329;padding:12px 13px 16px;border-radius:4px;box-shadow:inset 0 0 0 1px #55515a,0 2px 4px #0003;position:relative;transform-origin:left center;transform-style:preserve-3d;backface-visibility:hidden}.sleeve-head{display:flex;justify-content:space-between;color:#aaa4b0;font-size:7px;padding:0 1px 9px}.pockets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 7px}.pocket{position:relative;padding:4px 3px 6px;border:1px solid #ffffff13;border-radius:2px;background:linear-gradient(130deg,#ffffff09,transparent 65%);min-width:0;cursor:pointer;outline:none}.pocket:after{content:'';position:absolute;inset:0;border-bottom:2px solid #ffffff1c;background:linear-gradient(112deg,transparent 35%,#ffffff0a 36%,transparent 64%);pointer-events:none;z-index:4}.pocket:before{content:'';position:absolute;top:-1px;left:42%;width:16%;height:4px;border:1px solid #ffffff19;border-top:0;border-radius:0 0 10px 10px;z-index:5}.pocket .card{transition:transform .25s,filter .3s,box-shadow .25s}.pocket:hover .card{transform:translateY(-3px);box-shadow:0 8px 18px #0008}.pocket.missing .card{filter:saturate(.35)}.pocket.pulse{animation:pulse 1s 2}@keyframes pulse{50%{box-shadow:0 0 0 2px #cbbbeb,0 0 25px #cbbbeb88}}.rings{position:absolute;inset:0;pointer-events:none;z-index:12}.ring{position:absolute;left:calc(50% - 17px);width:35px;height:13px;border-radius:50%;background:linear-gradient(#bcbcc2,#fff 35%,#6d6d75 65%,#e8e6e5 85%,#54525a);box-shadow:0 2px 3px #0005}.ring:before,.ring:after{content:'';position:absolute;top:4px;width:6px;height:7px;border-radius:50%;background:#3d3941;z-index:-1}.ring:before{left:-2px}.ring:after{right:-2px}.ring:nth-child(1){top:18%}.ring:nth-child(2){top:49%}.ring:nth-child(3){top:80%}
+.card{background:#f6f3e9;border-radius:5px;padding:5.5%;color:#29262d;aspect-ratio:63/88;display:flex;flex-direction:column;position:relative;overflow:hidden;container-type:inline-size;text-align:left;box-shadow:0 1px 2px #0003}.card-header,.card-footer{display:flex;justify-content:space-between;align-items:center;gap:4px;font:4.7cqw Arial,sans-serif;white-space:nowrap}.type-label{display:flex;align-items:center;gap:3px}.glyph{display:inline-grid;place-items:center;background:var(--type);color:#fff;border-radius:50%;width:7cqw;height:7cqw;font:6cqw Arial}.art{margin-top:4%;height:49%;flex-shrink:0;background:radial-gradient(ellipse at 20% 10%,#ffffffb0,transparent 70%),linear-gradient(135deg,var(--wash),var(--wash2));border-radius:3px;position:relative;overflow:hidden;display:grid;place-items:center}.art svg{width:94%;height:94%;position:relative;z-index:1;filter:drop-shadow(0 8px 4px #0000000e)}.card h2{font:12cqw/.98 Alpha,Arial,sans-serif;letter-spacing:-.035em;margin:5% 0 3%;white-space:nowrap}.card h2.long{font-size:9.7cqw}.ability{display:flex;align-items:center;justify-content:space-between;font:5.2cqw Arial,sans-serif;gap:2px}.power{font-size:8cqw}.flavour{font:4.3cqw/1.35 Arial,sans-serif;margin:3% 0;flex:1}.card-footer{border-top:1px solid #62596580;padding-top:4%;font-size:4.1cqw}.holo .art{background:linear-gradient(125deg,#ceb1ee,#8dd6f2,#a6dcc1,#f5db8d,#ecacbe,#aca8ef);background-size:350% 350%;animation:holo 9s ease-in-out infinite}.holo{background:linear-gradient(135deg,#f5f1ff,#e1dfef 50%,#f8ebdf);box-shadow:inset 0 0 0 1px #b8a3d6}.holo .art:after{content:'';position:absolute;inset:-80%;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 35%,#ffffff10 42%,#ffffff9a 48%,#ffffff10 53%,transparent 60%);transform:translate(calc((var(--gx,50%) - 50%) * .6),calc((var(--gy,50%) - 50%) * .4));mix-blend-mode:soft-light}.holo .art:before{content:'';position:absolute;inset:0;background-image:radial-gradient(#fff9 .7px,transparent .9px);background-size:12px 17px}@keyframes holo{50%{background-position:100% 70%}}
+.cover{position:absolute;left:50%;top:0;width:50%;height:100%;z-index:20;transform-origin:left center;transform-style:preserve-3d;transition:transform 600ms var(--ease),visibility 0s;background:none;border:0;padding:0;border-radius:5px;box-shadow:3px 8px 0 #c9c4b8,5px 11px 0 #8a867d,0 30px 65px #0006;color:#353137}.cover-front,.cover-back{position:absolute;inset:0;background:linear-gradient(100deg,#d7d1c5 0%,#f1ede2 5%,#e8e3d7 100%);border-radius:5px;backface-visibility:hidden}.cover-front{display:flex;flex-direction:column;justify-content:space-between;padding:8%;border-left:8px double #c7c1b4}.cover-back{transform:rotateY(180deg);background:#e7e1d4}.cover-brand{font:clamp(32px,4vw,55px) Alpha,Arial,sans-serif;text-align:left;letter-spacing:-.07em}.slots{position:absolute;inset:36% 0 auto;display:flex;justify-content:center;gap:14px;transform:rotate(-1deg)}.slots i{display:block;width:26px;height:91px;border-radius:20px;background:#d7d2c7;box-shadow:inset 2px 2px 5px #0002,1px 1px 2px #fff9}.slots i+ i{transform:translateY(-13px)}.cover-footer{display:flex;justify-content:space-between;font-size:10px}.book.closed .spread{opacity:0;pointer-events:none}.book.closed .cover{transform:translateX(-50%) rotateY(-5deg)}.book:not(.closed) .cover{transform:rotateY(-180deg);visibility:hidden;pointer-events:none;transition:transform 600ms var(--ease),visibility 0s .6s}.book.closed .rings{opacity:0}.book.closed .edge{display:none}.edge{position:absolute;right:-14px;top:8%;height:84%;width:22px;border:0;background:transparent;z-index:7}.edge.prev{right:auto;left:-14px}.edge:hover{background:#b6a5d322}.nav{height:80px;display:flex;align-items:center;justify-content:center;gap:30px;color:var(--muted);font-size:10px}.nav button{width:38px;height:38px;border:1px solid #8882a03b;border-radius:50%;background:transparent}.nav button:disabled{opacity:.2;cursor:default}.hint{position:absolute;top:calc(100% + 27px);left:0;right:0;text-align:center;font-size:9px;letter-spacing:.08em;color:var(--muted)}.book:not(.closed) .hint{display:none}.nav.hidden{visibility:hidden}.leaf{position:absolute;inset:0 0 0 16px;z-index:9;transform-origin:left center;transform-style:preserve-3d;pointer-events:none}.leaf-side{position:absolute;inset:0;backface-visibility:hidden;background:#242329;border-radius:4px}.leaf-side.back{transform:rotateY(180deg);background:repeating-linear-gradient(0deg,transparent 0 32%,#ffffff14 33% 33.3%),repeating-linear-gradient(90deg,#242329 0 32%,#ffffff14 33% 33.3%);border:12px solid #29272e}.leaf .sleeve{height:100%}
+dialog{width:100vw;max-width:none;height:100svh;max-height:none;border:0;padding:40px;background:#14101ceF;color:#f3efe6;margin:0;overflow:auto}dialog::backdrop{background:#14101cdd;backdrop-filter:blur(9px)}.detail-layout{min-height:100%;display:flex;align-items:center;justify-content:center;gap:80px}.inspect-wrap{width:min(350px,80vw);flex-shrink:0;perspective:1300px;padding:20px 0}.inspect{width:100%;aspect-ratio:63/88;position:relative;transform-style:preserve-3d;cursor:grab;touch-action:pan-y;user-select:none;outline:none}.inspect:active{cursor:grabbing}.inspect .card,.card-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}.inspect .card{box-shadow:0 30px 60px #0008;transform:translateZ(.5px)}.card-back{transform:rotateY(180deg);border:9px solid #ede7d9;border-radius:7px;background:#e1d9c8;display:grid;place-items:center;overflow:hidden;box-shadow:0 30px 60px #0008}.pattern{position:absolute;inset:-30%;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;transform:rotate(-25deg);opacity:.1;color:#51475d;font:22px Alpha,Arial,sans-serif}.emblem{width:64%;aspect-ratio:1;border:1px solid #84758b;border-radius:50%;display:grid;place-items:center;background:#eee8d9;outline:1px solid #b0a3b3;outline-offset:8px;color:#51405c;font:50px Alpha,Arial,sans-serif;letter-spacing:-4px;z-index:1}.detail-copy{width:290px}.detail-number{font-size:11px;color:#b7adbf}.detail-copy h2{font:54px/.98 Alpha,Arial,sans-serif;letter-spacing:-2px;margin:20px 0 12px}.category{font-size:11px;color:#bdb2c6}.detail-flavour{font:17px/1.7 Arial,sans-serif;color:#c9bfce;margin:38px 0}.status{font-size:11px}.detail-help{font-size:10px;color:#91869c;line-height:1.8;margin-top:9px}.close{position:fixed;right:28px;top:24px;background:#ffffff09;border:1px solid #ffffff24;border-radius:25px;padding:10px 16px;font-size:11px;z-index:9}.flip-control{margin-top:20px;border:1px solid #ffffff25;background:transparent;padding:9px 14px;border-radius:30px;font-size:10px}.storage-note{text-align:center;font-size:10px;color:var(--muted);padding:10px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(min-width:1100px){.book{width:1000px}.check-row{min-height:25px}.intro{margin-bottom:21px}.card{border-radius:4px}}
+@media(max-width:759px){header.toolbar{height:65px;padding:0 10px;font-size:10px}.switch{gap:0}.switch button{padding:8px}.stage{padding:20px 18px 40px;min-height:calc(100svh - 145px)}.book{max-width:470px}.spread{grid-template-columns:1fr;gap:24px;padding:12px}.checklist{padding:16px 12px;background:none}.check-row{font-size:10px;min-height:29px}.check-row .rarity{font-size:8px}.intro{font-size:9px}.sleeve-shell{padding-left:0}.rings{display:none}.cover{left:0;width:100%;height:600px;max-height:70svh}.book.closed .cover{transform:rotateY(-4deg)}.book.closed{height:min(600px,70svh)}.book.closed .spread{display:none}.cover-brand{font-size:44px}.book:not(.closed) .cover{visibility:hidden}.leaf{left:0}.detail-layout{flex-direction:column;gap:12px;justify-content:flex-start;padding-top:35px}.detail-copy{width:min(100%,320px)}.detail-copy h2{font-size:38px;margin:10px 0}.detail-flavour{margin:20px 0}.inspect-wrap{width:min(300px,calc(100vw - 64px));padding:10px 0}dialog{padding:24px 25px 40px}.close{top:12px;right:14px}.pockets{gap:7px 4px}.sleeve{padding:10px 9px 13px}.nav{height:70px}.edge{right:-12px;width:17px}.edge.prev{left:-12px}.hint{top:calc(100% + 20px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.book:not(.closed) .cover{display:none}}
+
+/* CAT.EXE edition — warm printed stock, pixel sprites, terminal sleeve labels. */
+.cover-terminal{position:absolute;left:0;right:0;top:32%;display:grid;justify-content:center;text-align:left;font:clamp(25px,3.2vw,44px)/1.16 'Space Mono',monospace;letter-spacing:2px;color:#6a646b;text-shadow:0 1px 1px #fff}
+.cover-terminal span{white-space:pre}.cover-terminal small{font:9px 'Space Mono',monospace;letter-spacing:0;margin-top:22px;color:#8b818b}.cover-terminal b{animation:cursorBlink 1.8s steps(1) infinite;font-weight:400;color:#9786a2}@keyframes cursorBlink{50%{opacity:0}}
+.art{border-radius:1px;background:linear-gradient(145deg,var(--wash),var(--wash2));border:1px solid #ffffff16;isolation:isolate}.art svg{width:100%;height:100%;filter:none}.art:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff05 3px 4px);pointer-events:none;z-index:2}.card{border-radius:3px}.card h2{font-family:'Space Mono',monospace;font-weight:700;font-size:9cqw;letter-spacing:-.07em}.card h2.long{font-size:8cqw}.holo .art{background:linear-gradient(125deg,#423659,#48747a,#8a7850,#754966,#423659);background-size:350% 350%}.holo .art:before{background-image:radial-gradient(#fff8 .6px,transparent .8px);background-size:9px 13px}.holo .art:after{mix-blend-mode:screen;opacity:.65}.detail-copy h2{font-family:'Space Mono',monospace;font-weight:700;font-size:42px;letter-spacing:-3px}.page-head h1{font-family:'Space Mono',monospace;font-size:22px;letter-spacing:-1px}.emblem{border-radius:12px;border-style:dashed;display:flex;flex-direction:column;justify-content:center;gap:14px;font:28px 'Space Mono',monospace;letter-spacing:-2px}.emblem small{font:12px/1.8 'Space Mono',monospace;letter-spacing:2px;text-align:center}.pattern{font:15px 'Space Mono',monospace}.cover-footer{line-height:1.8}.sleeve-head{letter-spacing:.08em}.detail-number{text-transform:uppercase;letter-spacing:.06em}@media(max-width:759px){.cover-terminal{font-size:35px}.detail-copy h2{font-size:32px}}
+
+/* A checklist is one physical page, not a permanent sidebar. */
+[hidden]{display:none!important}.left-page{min-width:0}.left-page>.sleeve{margin-right:16px;height:100%}.right-page>.sleeve{height:100%}.empty-pocket{position:relative;aspect-ratio:63/89;border:1px solid #ffffff19;border-bottom:2px solid #ffffff27;border-radius:3px;background:linear-gradient(115deg,#ffffff06,transparent 45%,#ffffff04);display:grid;place-items:center;color:#ffffff0e;font-size:21px}.empty-pocket:before{content:'';position:absolute;top:-1px;left:42%;width:16%;height:7px;border:1px solid #ffffff22;border-top:0;border-radius:0 0 12px 12px}.leaf-side.back{border:0;background:#242329}.leaf-side.back>.sleeve{height:100%;margin:0}.leaf-side.back .pocket{pointer-events:none}@media(min-width:760px){.spread{min-height:var(--spread-height,0px)}}@media(max-width:759px){.left-page>.sleeve{margin-right:0}}
+
+.collection-set{border-top:1px solid #bfb7c4;border-bottom:1px solid #bfb7c4;margin:12px 0}.collection-set+.collection-set{border-top:0;margin-top:-12px}.collection-set summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 0;cursor:pointer;user-select:none}.collection-set summary::-webkit-details-marker{display:none}.collection-set summary:focus-visible{outline:2px solid #a88fe7;outline-offset:3px}.set-heading{display:flex;align-items:baseline;gap:10px;flex:1}.set-heading strong{font-size:12px;letter-spacing:-.4px}.set-heading small{font-size:8px;color:#8b7e91}.set-count{font-size:9px;color:#776980}.set-chevron{font-size:16px;color:#796585;transform:rotate(-90deg);transition:transform .2s}.collection-set[open] .set-chevron{transform:rotate(0)}.set-content{padding-bottom:12px}.selected-set summary strong{color:#61506e}.collection-set .check-row:last-child{border-bottom:0}
+</style></head><body>
+<header class="toolbar"><div class="switch" aria-label="Stage theme"><button data-theme="dark" aria-pressed="true">Dark</button><button data-theme="light" aria-pressed="false">Light</button></div><div class="switch" aria-label="Binder view"><button data-view="spread" aria-pressed="false">Spread</button><button data-view="binder" aria-pressed="true">Binder</button><button data-view="3d" aria-pressed="false">3D</button></div></header>
+<main class="stage"><div class="book closed" id="book"><div class="spread" id="spread"><div class="page left-page"><section class="checklist"><div class="page-head"><h1>Collection</h1><span class="micro" id="currentSetLabel">Set 1</span></div><p class="intro">CAT.EXE / A SMALL COLLECTION OF SYSTEM ERRORS.<br>18 cats. Nine lives. Absolutely no tech support.</p><div id="rows"></div><div class="progress-footer"><span>Collected</span><span id="progress" aria-live="polite"></span></div><div class="progress-track"><i id="progressBar"></i></div></section><div id="leftSleeve" class="sleeve" hidden></div></div><section class="page sleeve-shell right-page" aria-label="Right card sleeve"><div id="sleeve" class="sleeve"></div></section><div class="rings" aria-hidden="true"><i class="ring"></i><i class="ring"></i><i class="ring"></i></div><button class="edge prev" aria-label="Previous page edge"></button><button class="edge next" aria-label="Next page edge"></button></div><button id="cover" class="cover" aria-label="Open the binder"><span class="cover-front"><span class="cover-brand brand"></span><span class="cover-terminal" aria-hidden="true"><span>/\_/\</span><span>( o.o )</span><span>&gt; ^ &lt;<b>_</b></span><small>cat.exe is sleeping</small></span><span class="cover-footer"><span>CAT.EXE<br>Feline operating system</span><span>Set 1</span></span></span><span class="cover-back"></span></button><div class="hint">CAT.EXE / INSERT PAW TO CONTINUE</div></div></main>
+<nav class="nav hidden" aria-label="Page navigation"><button id="prev" aria-label="Previous spread">←</button><span id="spreadLabel" aria-live="polite">Spread 1 / 2</span><button id="next" aria-label="Next spread">→</button></nav><div id="storageNote" class="storage-note" hidden>Saving is unavailable in this browser; changes last for this visit.</div>
+<dialog id="detail" aria-labelledby="detailName"><button class="close" id="close">Close × <span class="sr">Return to pocket</span></button><div class="detail-layout"><div class="inspect-wrap"><div id="inspect" class="inspect" role="button" tabindex="0" aria-label="Flip card; drag horizontally to inspect"></div></div><section class="detail-copy"><div id="detailNumber" class="detail-number"></div><h2 id="detailName"></h2><div id="category" class="category"></div><p id="detailFlavour" class="detail-flavour"></p><div id="status" class="status"></div><p class="detail-help">Drag to turn it over.<br>Click to flip. Esc to return to its pocket.</p><button class="flip-control" id="flip">Flip card ↻</button></section></div></dialog>
+<script>
+'use strict';
+// Rename the collection here. Storage keeps its stable v1 key intentionally.
+const BRAND = "eddy";
+let SET = 'Set 1', REGULAR_COUNT = 15;
+const STORAGE_KEY = 'eddy-cat-exe.v1';
+const TYPES={Input:{glyph:'+',colour:'#669fc0'},Runtime:{glyph:'*',colour:'#a585ce'},Cache:{glyph:'#',colour:'#79a389'},Hardware:{glyph:'=',colour:'#d3a45b'},Ghost:{glyph:'~',colour:'#cf8cac'}};
+// Palette order: fur highlight, base fur, fur shadow, terminal background, terminal gradient.
+const CAT_CARDS = [
+  {
+    "n": 1,
+    "name": "Cursor Kitten",
+    "type": "Input",
+    "category": "Navigation · Mischief",
+    "rarity": "Common",
+    "power": 25,
+    "ability": "Point & Pounce",
+    "flavour": "Chases the pointer, then reports it as missing.",
+    "shape": "cursor",
+    "palette": [
+      "#edbf81",
+      "#ce9257",
+      "#996640",
+      "#20303b",
+      "#38414b"
+    ]
+  },
+  {
+    "n": 2,
+    "name": "Byte Biter",
+    "type": "Input",
+    "category": "Snacks · Data",
+    "rarity": "Common",
+    "power": 35,
+    "ability": "Small Appetite",
+    "flavour": "Eats exactly eight bits and asks for seconds.",
+    "shape": "byte",
+    "palette": [
+      "#dfb1c4",
+      "#bd829e",
+      "#87576e",
+      "#322d43",
+      "#4d3c52"
+    ]
+  },
+  {
+    "n": 3,
+    "name": "Tabby Tab",
+    "type": "Runtime",
+    "category": "Windows · Distraction",
+    "rarity": "Common",
+    "power": 30,
+    "ability": "Open Another",
+    "flavour": "Keeps seventeen tabs open for emotional support.",
+    "shape": "tabs",
+    "palette": [
+      "#c6b6ec",
+      "#9c87c4",
+      "#6b5c94",
+      "#292b42",
+      "#42405c"
+    ]
+  },
+  {
+    "n": 4,
+    "name": "Cache Nap",
+    "type": "Cache",
+    "category": "Memory · Napping",
+    "rarity": "Common",
+    "power": 40,
+    "ability": "Save for Later",
+    "flavour": "Stores all its energy where nobody can find it.",
+    "shape": "sleep",
+    "palette": [
+      "#c5d1aa",
+      "#9fad80",
+      "#6c7c58",
+      "#253b34",
+      "#3d5044"
+    ]
+  },
+  {
+    "n": 5,
+    "name": "Pixel Pounce",
+    "type": "Input",
+    "category": "Graphics · Hunting",
+    "rarity": "Common",
+    "power": 45,
+    "ability": "Snap to Grid",
+    "flavour": "Lands on the nearest available pixel.",
+    "shape": "pounce",
+    "palette": [
+      "#f1bd91",
+      "#d49369",
+      "#995f47",
+      "#343044",
+      "#544354"
+    ]
+  },
+  {
+    "n": 6,
+    "name": "Disk Loaf",
+    "type": "Cache",
+    "category": "Storage · Comfort",
+    "rarity": "Common",
+    "power": 50,
+    "ability": "Read Only",
+    "flavour": "Refuses to move until the file has finished saving.",
+    "shape": "disk",
+    "palette": [
+      "#c7c3d5",
+      "#a29bb2",
+      "#71687e",
+      "#29353d",
+      "#45515a"
+    ]
+  },
+  {
+    "n": 7,
+    "name": "Cable Cat",
+    "type": "Hardware",
+    "category": "Cables · Knots",
+    "rarity": "Common",
+    "power": 55,
+    "ability": "Loose Connection",
+    "flavour": "Disconnects one cable and waits for applause.",
+    "shape": "cable",
+    "palette": [
+      "#edbf81",
+      "#ce9257",
+      "#996640",
+      "#20303b",
+      "#38414b"
+    ]
+  },
+  {
+    "n": 8,
+    "name": "Keycap",
+    "type": "Hardware",
+    "category": "Keyboard · Pressure",
+    "rarity": "Common",
+    "power": 60,
+    "ability": "Hold Escape",
+    "flavour": "Sits on the one key you currently need.",
+    "shape": "keycap",
+    "palette": [
+      "#dfb1c4",
+      "#bd829e",
+      "#87576e",
+      "#322d43",
+      "#4d3c52"
+    ]
+  },
+  {
+    "n": 9,
+    "name": "Blue Screen",
+    "type": "Runtime",
+    "category": "Errors · Drama",
+    "rarity": "Rare",
+    "power": 70,
+    "ability": "Fatal Nap",
+    "flavour": "Stops responding until someone opens a snack.",
+    "shape": "bluescreen",
+    "palette": [
+      "#c6b6ec",
+      "#9c87c4",
+      "#6b5c94",
+      "#292b42",
+      "#42405c"
+    ]
+  },
+  {
+    "n": 10,
+    "name": "Patch Paws",
+    "type": "Hardware",
+    "category": "Repairs · Tape",
+    "rarity": "Common",
+    "power": 65,
+    "ability": "Works on Mine",
+    "flavour": "Fixes the problem by standing on a different part.",
+    "shape": "patch",
+    "palette": [
+      "#c5d1aa",
+      "#9fad80",
+      "#6c7c58",
+      "#253b34",
+      "#3d5044"
+    ]
+  },
+  {
+    "n": 11,
+    "name": "Night Shift",
+    "type": "Ghost",
+    "category": "Midnight · Patrol",
+    "rarity": "Rare",
+    "power": 90,
+    "ability": "After Hours",
+    "flavour": "Runs every update at precisely three in the morning.",
+    "shape": "night",
+    "palette": [
+      "#f1bd91",
+      "#d49369",
+      "#995f47",
+      "#343044",
+      "#544354"
+    ]
+  },
+  {
+    "n": 12,
+    "name": "Inbox Cat",
+    "type": "Cache",
+    "category": "Mail · Nesting",
+    "rarity": "Common",
+    "power": 80,
+    "ability": "Mark Unread",
+    "flavour": "Sleeps on your messages until they become urgent.",
+    "shape": "inbox",
+    "palette": [
+      "#c7c3d5",
+      "#a29bb2",
+      "#71687e",
+      "#29353d",
+      "#45515a"
+    ]
+  },
+  {
+    "n": 13,
+    "name": "Root Access",
+    "type": "Runtime",
+    "category": "Permissions · Power",
+    "rarity": "Rare",
+    "power": 110,
+    "ability": "Super Mewer",
+    "flavour": "Has administrator privileges and no relevant training.",
+    "shape": "root",
+    "palette": [
+      "#edbf81",
+      "#ce9257",
+      "#996640",
+      "#20303b",
+      "#38414b"
+    ]
+  },
+  {
+    "n": 14,
+    "name": "Soft Reset",
+    "type": "Cache",
+    "category": "Recovery · Blankets",
+    "rarity": "Rare",
+    "power": 120,
+    "ability": "Try a Nap",
+    "flavour": "Turns itself off and hopes someone else turns it on.",
+    "shape": "reset",
+    "palette": [
+      "#dfb1c4",
+      "#bd829e",
+      "#87576e",
+      "#322d43",
+      "#4d3c52"
+    ]
+  },
+  {
+    "n": 15,
+    "name": "Boss Cat",
+    "type": "Hardware",
+    "category": "Management · Boxes",
+    "rarity": "Rare",
+    "power": 125,
+    "ability": "Scope Creep",
+    "flavour": "Requests a bigger box after approving the smaller box.",
+    "shape": "boss",
+    "palette": [
+      "#c6b6ec",
+      "#9c87c4",
+      "#6b5c94",
+      "#292b42",
+      "#42405c"
+    ]
+  },
+  {
+    "n": 16,
+    "name": "Ghost Mode",
+    "type": "Ghost",
+    "category": "Stealth · Presence",
+    "rarity": "Collector's rare",
+    "power": 150,
+    "ability": "Now You See Me",
+    "flavour": "Leaves only a warm keyboard and an unexplained process.",
+    "shape": "ghost",
+    "palette": [
+      "#c5d1aa",
+      "#9fad80",
+      "#6c7c58",
+      "#253b34",
+      "#3d5044"
+    ]
+  },
+  {
+    "n": 17,
+    "name": "Nine Lives",
+    "type": "Ghost",
+    "category": "Backups · Luck",
+    "rarity": "Collector's rare",
+    "power": 180,
+    "ability": "Undo Undo Undo",
+    "flavour": "Restores itself from a backup nobody remembers making.",
+    "shape": "lives",
+    "palette": [
+      "#f1bd91",
+      "#d49369",
+      "#995f47",
+      "#343044",
+      "#544354"
+    ]
+  },
+  {
+    "n": 18,
+    "name": "Cat Singularity",
+    "type": "Runtime",
+    "category": "Physics · Overcrowding",
+    "rarity": "Collector's rare",
+    "power": 220,
+    "ability": "Infinite Meow",
+    "flavour": "Opens one more cat until the entire system starts purring.",
+    "shape": "singularity",
+    "palette": [
+      "#c7c3d5",
+      "#a29bb2",
+      "#71687e",
+      "#29353d",
+      "#45515a"
+    ]
+  }
+];
+// Add future sets here. Card numbers may restart at 1 in each set.
+const SETS = [{id:'cat-exe',name:'CAT.EXE',label:'Set 1',regularCount:15,cards:CAT_CARDS}];
+let currentSet=SETS[0], CARDS=currentSet.cards;
+// Sprite pixels: 1 = outline, 2 = fur, 3 = highlight, 4 = shadow, 5 = eyes.
+// Every character uses the same 1-unit pixel grid. The renderer adds code-drawn props.
+const SPRITES={
+ sit:[
+ '00110000001100',
+ '01221000012210',
+ '01222111122210',
+ '01222222222210',
+ '01232222223210',
+ '01225222522210',
+ '01222242222210',
+ '00122222222100',
+ '00012222221000',
+ '00012322221000',
+ '00122322222100',
+ '01222322222210',
+ '0122232222221011',
+ '0122242222221121',
+ '0012211122212210',
+ '0011110011111100'],
+ loaf:[
+ '000011000011000000',
+ '000122100122100000',
+ '000122211222100000',
+ '000123222232100000',
+ '000125222522100000',
+ '000122242222111000',
+ '001122222222222100',
+ '012222222222222210',
+ '012322222222222221',
+ '012332222222222241',
+ '001222222222224410',
+ '000111111111111100'],
+ leap:[
+ '000000000011001100',
+ '000000000122112210',
+ '000000001222222210',
+ '000000001232223210',
+ '011000001252252210',
+ '122111111222422210',
+ '012222222222222100',
+ '001233222222221000',
+ '000122222222221100',
+ '000122211122222210',
+ '001222100011111100',
+ '001111000000000000'],
+ ghost:[
+ '000110000011000',
+ '001331000133100',
+ '001333111333100',
+ '001333333333100',
+ '001335333533100',
+ '001333343333100',
+ '001333333333100',
+ '001333333333100',
+ '001333333333100',
+ '001333333333100',
+ '001331313133100',
+ '000110101011000']};
+function sprite(kind,c,x=29,y=25,scale=2.7){const p=c.palette,ink='#272536';const colors={'1':ink,'2':p[1],'3':p[0],'4':p[2],'5':ink};return `<g transform="translate(${x} ${y}) scale(${scale})">`+SPRITES[kind].map((row,j)=>[...row].map((v,i)=>v==='0'?'':`<rect x="${i}" y="${j}" width="1" height="1" fill="${colors[v]}"/>`).join('')).join('')+'</g>';}
+function shapeSVG(c){
+ const r=(x,y,w,h,fill)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"/>`;
+ const line=(d,col='#9ab7ae',w=1)=>`<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}"/>`;
+ const text=(x,y,t,size=4,color='#b7c8c2')=>`<text x="${x}" y="${y}" font-family="monospace" font-size="${size}" fill="${color}">${t}</text>`;
+ let bg=r(8,10,84,77,'#ffffff04')+line('M8 17H92 M14 13H16 M19 13H21 M24 13H26','#ffffff24')+text(74,15,String(c.n).padStart(2,'0'));
+ let back='',front='',kind='sit',x=29,y=25,scale=2.7;
+ switch(c.shape){
+ case 'cursor':front='<path d="M72 51V72L78 66L83 77L87 75L82 64H91Z" fill="#f0e8d8" stroke="#252333" stroke-width="1.5"/>';break;
+ case 'byte':front=r(62,61,20,14,'#d4b77c')+r(78,61,5,6,'#343044')+r(65,64,3,3,'#765b42')+r(71,69,3,3,'#765b42');back=text(16,29,'0101',6);break;
+ case 'tabs':back=r(15,25,62,42,'#675d83')+r(20,30,62,42,'#9484ac')+r(25,35,62,42,'#39364d');front=text(30,43,'[17] tabs',4);y=39;scale=2.1;break;
+ case 'sleep':kind='loaf';x=25;y=42;front=text(62,38,'z Z',8)+text(73,27,'Z',10);back=r(19,70,65,6,'#6f8e7d');break;
+ case 'pounce':kind='leap';x=20;y=37;front=r(76,40,5,5,'#e6dc88')+r(81,45,5,5,'#d19ec4')+r(12,61,8,2,'#adb7c9');break;
+ case 'disk':kind='loaf';x=23;y=24;back=r(26,49,50,34,'#8a8ba6')+r(32,52,29,9,'#d7d6d6')+r(34,66,33,17,'#e6dfd0')+r(59,54,5,7,'#343244');front=text(40,77,'NAP.DAT',4,'#4e4659');break;
+ case 'cable':back=line('M20 72H10V43H19V72H78V47H89V78H59','#d2be79',3)+r(16,38,6,8,'#8f9fa6');front=r(55,74,8,10,'#b2b9b4');break;
+ case 'keycap':y=22;scale=2.4;back=r(20,65,62,18,'#897d9e')+r(24,61,54,17,'#c8bedb');front=text(39,75,'ESC',9,'#4b405c');break;
+ case 'bluescreen':back=r(15,22,70,51,'#a2b7c8')+r(19,26,62,41,'#3970b7')+r(43,73,14,7,'#91a8b8')+r(31,80,38,4,'#a8bac6');x=35;y=31;scale=1.8;front=text(23,63,':( nap error',4,'#e6efff');break;
+ case 'patch':front=r(39,33,19,5,'#e8d9b2')+r(46,26,5,19,'#e8d9b2')+r(46,33,5,5,'#bca57d')+line('M71 80L84 67 M80 66L87 73','#bfc9cc',3);break;
+ case 'night':back='<path d="M77 23H84V31H80V35H69V31H65V24H69V29H77Z" fill="#efe2a5"/>'+r(16,28,2,2,'#e4d4ff')+r(78,49,2,2,'#e4d4ff');front=r(36,38,9,5,'#e8dda2')+r(50,38,9,5,'#e8dda2');break;
+ case 'inbox':kind='loaf';x=26;y=24;front=r(18,56,66,26,'#d7c5a7')+line('M18 56L51 72L84 56','#917c68',2)+text(34,79,'UNREAD 99+',4,'#665449');break;
+ case 'root':front=r(31,20,34,7,'#e6c86c')+r(31,13,6,10,'#e6c86c')+r(45,10,6,13,'#e6c86c')+r(59,13,6,10,'#e6c86c')+text(70,75,'#_',9);break;
+ case 'reset':kind='loaf';x=24;y=39;front=r(23,60,52,14,'#9a85b9')+r(27,64,44,3,'#bfaccf');back=line('M39 27H63V36M63 27L58 22M63 27L58 32','#dfd4e9',2);break;
+ case 'boss':y=19;front=r(19,53,63,30,'#bf9564')+r(24,58,53,21,'#cfa876')+line('M50 54V82','#9c774e',2)+text(29,73,'MANAGEMENT',5,'#6d513e');break;
+ case 'ghost':kind='ghost';back=r(20,38,58,2,'#9ff0d272')+r(14,60,70,2,'#b394e787');front=r(37,48,38,2,'#c7f8e8')+text(12,80,'process not found',4,'#f4efff');break;
+ case 'lives':return `<svg viewBox="0 0 100 100" shape-rendering="crispEdges" aria-hidden="true">${bg}${Array.from({length:9},(_,i)=>sprite('sit',{palette:[['#d5c2ef','#b5d8c6','#f5d49c'][i%3],['#a998c4','#8bbca7','#d1aa73'][i%3],'#766784']},17+(i%3)*25,22+Math.floor(i/3)*21,1.2)).join('')}${text(31,91,'RESTORE ALL',4,'#f6f0ef')}</svg>`;
+ case 'singularity':return `<svg viewBox="0 0 100 100" shape-rendering="crispEdges" aria-hidden="true">${bg}<path d="M18 34L34 20H68L85 38V67L67 83H34L16 65Z" fill="#3a284b" stroke="#d7b8ed" stroke-width="1"/>${[[31,18],[50,16],[68,28],[15,39],[39,40],[63,50],[27,62],[47,65],[75,65]].map(([a,b],i)=>sprite(i%3===0?'loaf':'sit',{palette:[['#d7bae8','#a7cfdb','#eed386','#b9d9ac','#e7b2c8'][i%5],['#b28fc7','#7eafbc','#d2ad5e','#93b47e','#c990a9'][i%5],'#716182']},a,b,1.35)).join('')}${text(28,93,'TOO MANY CATS',4,'#fff3ef')}</svg>`;
+ }
+ return `<svg viewBox="0 0 100 100" shape-rendering="crispEdges" aria-hidden="true">${bg}${back}${r(24,82,53,2,'#00000022')}${sprite(kind,c,x,y,scale)}${front}</svg>`;
+}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const number=c=>String(c.n).padStart(2,'0')+'/'+REGULAR_COUNT;
+function cardHTML(c){const t=TYPES[c.type];return `<article class="card ${c.rarity==="Collector's rare"?'holo':''}" style="--type:${t.colour};--wash:${c.palette[3]};--wash2:${c.palette[4]}"><div class="card-header"><span class="type-label"><span class="glyph">${t.glyph}</span>${c.type}</span><span>${number(c)} ${c.rarity==='Common'?'·':c.rarity==='Rare'?'★':'✦✦'}</span></div><div class="art">${shapeSVG(c)}</div><h2 class="${c.name.length>11?'long':''}">${c.name}</h2><div class="ability"><span>✦ ${c.ability}</span><span class="power">${c.power}</span></div><p class="flavour">${c.flavour}</p><div class="card-footer"><span>${c.rarity}</span><span>${BRAND} · ${SET}</span></div></article>`}
+const collectionBySet=new Map(SETS.map(set=>[set.id,new Set(set.cards.filter(c=>c.n<=set.regularCount).map(c=>c.n))]));
+try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(Array.isArray(saved))collectionBySet.set(SETS[0].id,new Set(saved.filter(n=>SETS[0].cards.some(c=>c.n===n))));else if(saved?.sets)for(const set of SETS){if(Array.isArray(saved.sets[set.id]))collectionBySet.set(set.id,new Set(saved.sets[set.id].filter(n=>set.cards.some(c=>c.n===n))));}}catch(e){$('#storageNote').hidden=false}
+let collected=collectionBySet.get(currentSet.id);
+let page=0,mode='binder',busy=false,active=null,angle=0,drag=null,lastPocket=null;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+document.title=BRAND+' / '+currentSet.name+' — '+SET;$$('.brand').forEach(e=>e.textContent=BRAND);
+$('#rows').innerHTML=SETS.map((set,i)=>`<details class="collection-set" data-set="${set.id}" ${i===0?'open':''}><summary><span class="set-heading"><strong>${set.name}</strong><small>${set.label}</small></span><span class="set-count"></span><span class="set-chevron" aria-hidden="true">⌄</span></summary><div class="set-content"><div class="labels"><span>No.</span><span>The collection</span><span></span><span>Rarity</span><span></span></div>${set.cards.map(c=>`<div class="check-row ${c.n===set.regularCount+1?'secret-start':''}" data-n="${c.n}" data-set="${set.id}"><span>${String(c.n).padStart(2,'0')}</span><button class="card-link" aria-label="Find ${c.name}">${c.name}</button><span class="dot" style="--type:${TYPES[c.type].colour}" title="${c.type}"></span><span class="rarity">${c.rarity}</span><input class="tick" type="checkbox" aria-label="Collected ${c.name}"></div>`).join('')}</div></details>`).join('');
+function updateCollection(){const total=SETS.reduce((n,set)=>n+set.cards.length,0),count=[...collectionBySet.values()].reduce((n,set)=>n+set.size,0);$('#progress').textContent=count+' / '+total+' collected';$('#progressBar').style.width=(total?100*count/total:0)+'%';$$('.check-row').forEach(r=>r.querySelector('input').checked=collectionBySet.get(r.dataset.set).has(+r.dataset.n));$$('.collection-set').forEach(el=>{const set=SETS.find(s=>s.id===el.dataset.set);el.querySelector('.set-count').textContent=collectionBySet.get(set.id).size+' / '+set.cards.length;el.classList.toggle('selected-set',set.id===currentSet.id)});$$('.pocket').forEach(p=>p.classList.toggle('missing',!collected.has(+p.dataset.n)));if(active)$('#status').textContent=collected.has(active.n)?'Pulled once':'Not pulled yet';}
+function toggleCollected(n,setId=currentSet.id){const found=collectionBySet.get(setId);found.has(n)?found.delete(n):found.add(n);try{localStorage.setItem(STORAGE_KEY,JSON.stringify({sets:Object.fromEntries([...collectionBySet].map(([id,values])=>[id,[...values]]))}))}catch(e){$('#storageNote').hidden=false}updateCollection()}
+function selectSet(id){if(busy)return false;if(id===currentSet.id)return true;currentSet=SETS.find(s=>s.id===id);CARDS=currentSet.cards;SET=currentSet.label;REGULAR_COUNT=currentSet.regularCount;collected=collectionBySet.get(id);page=0;$('#currentSetLabel').textContent=SET;document.title=BRAND+' / '+currentSet.name+' — '+SET;renderSleeve();updateCollection();return true;}
+$('#rows').addEventListener('click',e=>{const r=e.target.closest('.check-row');if(!r)return;const n=+r.dataset.n;if(e.target.closest('.card-link')){if(selectSet(r.dataset.set))jumpTo(n);return}toggleCollected(n,r.dataset.set)});
+$$('.collection-set').forEach(el=>el.addEventListener('toggle',()=>{if(el.open)selectSet(el.dataset.set)}));
+// Physical order: checklist, sleeve 01–09, sleeve 10–18, empty sleeve…
+const spreadCount=()=>Math.ceil((Math.ceil(CARDS.length/9)+1)/2);
+function sleeveHTML(start,label){return `<div class="sleeve-head"><span>${BRAND} / ${currentSet.name}</span><span>${SET} · ${label}</span></div><div class="pockets">${Array.from({length:9},(_,i)=>{const c=CARDS[start+i];return c?`<div class="pocket ${collected.has(c.n)?'':'missing'}" role="button" tabindex="0" data-n="${c.n}" aria-label="Inspect ${c.name}, ${number(c)}">${cardHTML(c)}</div>`:`<div class="empty-pocket" aria-label="Empty card pocket"><span>+</span></div>`}).join('')}</div>`;}
+function renderSleeve(){
+ $('.checklist').hidden=page!==0;
+ $('#leftSleeve').hidden=page===0;
+ $('#leftSleeve').innerHTML=page?sleeveHTML((page*2-1)*9,page*2):'';
+ $('#sleeve').innerHTML=sleeveHTML(page*18,page*2+1);
+ $('#prev').disabled=page===0;$('#next').disabled=page===spreadCount()-1;
+ $('.edge.prev').disabled=page===0;$('.edge.next').disabled=$('#next').disabled;
+ $('#spreadLabel').textContent=`Spread ${page+1} / ${spreadCount()}`;
+ if(page===0&&innerWidth>=760)$('#spread').style.setProperty('--spread-height',$('#spread').offsetHeight+'px');
+}
+let audio;function swish(){try{audio??=new(window.AudioContext||window.webkitAudioContext)();audio.resume();const b=audio.createBuffer(1,audio.sampleRate*.12,audio.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);const s=audio.createBufferSource(),f=audio.createBiquadFilter(),g=audio.createGain();s.buffer=b;f.type='bandpass';f.frequency.value=1500;g.gain.value=.025;s.connect(f);f.connect(g);g.connect(audio.destination);s.start()}catch(e){}}
+async function turn(target){if(busy||mode==='binder'||target<0||target>=spreadCount()||target===page)return;busy=true;const old=page;swish();if(reduced.matches){page=target;renderSleeve();const a=$('#sleeve').animate([{opacity:0},{opacity:1}],{duration:160});await a.finished;}else{const leaf=document.createElement('div');leaf.className='leaf';leaf.setAttribute('aria-hidden','true');leaf.innerHTML=`<div class="leaf-side front"><div class="sleeve">${$('#sleeve').innerHTML}</div></div><div class="leaf-side back"></div>`;leaf.querySelectorAll('[tabindex]').forEach(e=>e.removeAttribute('tabindex'));$('.right-page').append(leaf);page=target;renderSleeve();const forward=target>old;leaf.querySelector('.back').innerHTML=`<div class="sleeve">${sleeveHTML(((forward?target:old)*2-1)*9,(forward?target:old)*2)}</div>`;if(!forward)leaf.querySelector('.front .sleeve').innerHTML=$('#sleeve').innerHTML;const anim=leaf.animate([{transform:`rotateY(${forward?0:-180}deg)`},{transform:`rotateY(${forward?-180:0}deg)`}],{duration:600,easing:'cubic-bezier(.16,.8,.2,1)',fill:'forwards'});await anim.finished;leaf.remove()}busy=false;}
+function setMode(m){if(busy)return;mode=m;$('#book').classList.toggle('closed',m==='binder');$('#spread').inert=m==='binder';$('#cover').tabIndex=m==='binder'?0:-1;$('#cover').setAttribute('aria-hidden',m!=='binder');$('.nav').classList.toggle('hidden',m==='binder');$$('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===m));if(reduced.matches&&m!=='binder')$('#spread').animate([{opacity:0},{opacity:1}],{duration:160});if(m!=='3d'){$('#book').style.transform='';tx=ty=rx=ry=0;}}
+$('#cover').onclick=()=>{swish();setMode('spread')};$$('[data-view]').forEach(b=>b.onclick=()=>setMode(b.dataset.view));$$('[data-theme]').forEach(b=>b.onclick=()=>{document.body.classList.toggle('light',b.dataset.theme==='light');$$('[data-theme]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+$('#prev').onclick=$('.edge.prev').onclick=()=>turn(page-1);$('#next').onclick=$('.edge.next').onclick=()=>turn(page+1);
+async function jumpTo(n){if(busy)return;setMode('spread');await turn(Math.floor((Math.floor((n-1)/9)+1)/2));const p=$(`.pocket[data-n="${n}"]`);p.classList.remove('pulse');void p.offsetWidth;p.classList.add('pulse');p.focus({preventScroll:true});p.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'nearest'});}
+$('#spread').addEventListener('click',e=>{const p=e.target.closest('.pocket');if(p&&!busy)openCard(+p.dataset.n,p)});$('#spread').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const p=e.target.closest('.pocket');if(p&&!busy){e.preventDefault();openCard(+p.dataset.n,p)}}});
+function openCard(n,pocket){active=CARDS.find(c=>c.n===n);lastPocket=pocket;angle=0;$('#inspect').style.transition='none';$('#inspect').style.transform='';$('#inspect').style.setProperty('--gx','50%');$('#inspect').style.setProperty('--gy','50%');$('#inspect').innerHTML=cardHTML(active)+`<div class="card-back"><div class="pattern" aria-hidden="true">${Array(48).fill(`<span>/ᐠ. .ᐟ\\</span>`).join('')}</div><div class="emblem"><span>/ᐠ. .ᐟ\\</span><small>${BRAND}<br>CAT.EXE</small></div></div>`;$('#detailNumber').textContent=number(active)+' · '+active.rarity;$('#detailName').textContent=active.name;$('#category').textContent=active.category;$('#detailFlavour').textContent=active.flavour;updateCollection();$('#detail').showModal();document.body.style.overflow='hidden';$('#close').focus();}
+function closeCard(){$('#detail').close();active=null;drag=null;document.body.style.overflow='';lastPocket?.focus({preventScroll:true});}
+$('#close').onclick=closeCard;$('#detail').addEventListener('cancel',e=>{e.preventDefault();closeCard()});$('#detail').addEventListener('click',e=>{if(e.target===$('#detail'))closeCard()});
+function pose(a,tilt=0){angle=a;$('#inspect').style.transform=`rotateX(${reduced.matches?0:tilt}deg) rotateY(${a}deg)`;$('#inspect').style.setProperty('--gx',`${50+Math.sin(a*Math.PI/180)*48}%`);$('#inspect').style.setProperty('--gy',`${50+tilt*4}%`);$('#inspect').setAttribute('aria-label',Math.cos(a*Math.PI/180)<0?'Card back. Click or drag to show front.':'Card front. Click or drag to show back.');}
+async function flip(){swish();const target=Math.round(angle/180)*180+180;if(reduced.matches){await $('#inspect').animate([{opacity:1},{opacity:0}],{duration:100,fill:'forwards'}).finished;pose(target);$('#inspect').getAnimations().forEach(a=>a.cancel());$('#inspect').animate([{opacity:0},{opacity:1}],{duration:100});}else{$('#inspect').style.transition='transform .6s cubic-bezier(.16,.8,.2,1)';pose(target);}}
+$('#flip').onclick=flip;$('#inspect').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}};
+$('#inspect').onpointerdown=e=>{if(e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,start:angle,moved:0};$('#inspect').style.transition='none';$('#inspect').setPointerCapture(e.pointerId)};
+$('#inspect').onpointermove=e=>{if(!drag)return;const dx=e.clientX-drag.x;drag.moved=Math.max(drag.moved,Math.abs(dx));pose(drag.start+dx*1.2,Math.max(-10,Math.min(10,-(e.clientY-drag.y)/12)))};
+function release(e){if(!drag)return;const tap=drag.moved<5;drag=null;if(tap){flip();return}swish();$('#inspect').style.transition=reduced.matches?'none':'transform .35s ease-out';pose(Math.round(angle/180)*180);}
+$('#inspect').onpointerup=release;$('#inspect').onpointercancel=()=>{drag=null;pose(Math.round(angle/180)*180)};
+document.addEventListener('keydown',e=>{if($('#detail').open)return;if(e.key==='ArrowRight'){e.preventDefault();turn(page+1)}if(e.key==='ArrowLeft'){e.preventDefault();turn(page-1)}});
+let tx=0,ty=0,rx=0,ry=0,raf=0;function tiltLoop(){rx+=(tx-rx)*.12;ry+=(ty-ry)*.12;if(mode==='3d'&&!reduced.matches){$('#book').style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;$('#book').style.setProperty('--gx',`${50+ry*5}%`);$('#book').style.setProperty('--gy',`${50+rx*5}%`);}if(Math.abs(rx-tx)+Math.abs(ry-ty)>.01)raf=requestAnimationFrame(tiltLoop);else raf=0;}
+$('.stage').onpointermove=e=>{if(mode!=='3d'||reduced.matches||e.pointerType==='touch')return;const r=$('.stage').getBoundingClientRect();tx=Math.max(-10,Math.min(10,-((e.clientY-r.top)/r.height-.5)*20));ty=Math.max(-10,Math.min(10,((e.clientX-r.left)/r.width-.5)*20));if(!raf)raf=requestAnimationFrame(tiltLoop)};$('.stage').onpointerleave=()=>{tx=ty=0;if(!raf)raf=requestAnimationFrame(tiltLoop)};reduced.addEventListener('change',()=>{if(reduced.matches){$('#book').style.transform='';tx=ty=rx=ry=0;}});
+renderSleeve();updateCollection();setMode('binder');
+</script></body></html>
